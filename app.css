@@ -68,11 +68,11 @@ button:active {
   align-items: center;
 }
 
-#finished-projects {
+#Concluido-projects {
   border-color: #0044ff;
 }
 
-#finished-projects header {
+#Concluido-projects header {
   background: #0044ff;
 }
 
@@ -85,13 +85,13 @@ button:active {
   list-style: none;
   margin: 0;
   padding: 1rem;
-  background-color: white;
 }
 
 .projects li {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
   padding: 1rem;
   margin: 1rem;
+  background: white;
 }
 
 .projects li h2 {
@@ -99,7 +99,7 @@ button:active {
   margin: 0.5rem 0;
 }
 
-#finished-projects li h2 {
+#Concluido-projects li h2 {
   color: #0044ff;
 }
 
@@ -116,7 +116,7 @@ button:active {
   background: #ffe3ee;
 }
 
-#finished-projects .droppable {
+#Concluido-projects .droppable {
   background: #d6e1ff;
 }
 

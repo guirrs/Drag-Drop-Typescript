@@ -32,7 +32,7 @@ class State<T> {
 
 
 class ProjectState extends State<Project> {
-  private projects: any[] = [];
+  private projects: Project[] = [];
   private static instance: ProjectState
 
   //* O Construto impede que existe 2 class ProjectState, que poderiam dar conflito ao codigo
@@ -105,7 +105,7 @@ interface Validatable {
 function validate(validatableInput: Validatable) {
   let isValid = true;
   if (validatableInput.required) {
-    isValid = isValid && validatableInput.value.toString.length !== 0;
+    isValid = isValid && validatableInput.value.toString().trim().length !== 0;
   }
 
   if (validatableInput.minLenght != null &&
@@ -119,14 +119,14 @@ function validate(validatableInput: Validatable) {
     isValid = isValid && validatableInput.value.length <= validatableInput.maxLenght;
 
   if (validatableInput.min != null &&
-    typeof validatableInput.value === 'string'
+    typeof validatableInput.value === 'number'
   )
-    isValid = isValid && validatableInput.value.length >= validatableInput.min;
+    isValid = isValid && validatableInput.value >= validatableInput.min;
 
   if (validatableInput.max != null &&
-    typeof validatableInput.value === 'string'
+    typeof validatableInput.value === 'number'
   )
-    isValid = isValid && validatableInput.value.length <= validatableInput.max;
+    isValid = isValid && validatableInput.value <= validatableInput.max;
 
   return isValid;
 }
@@ -220,7 +220,7 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> implements 
 class ProjectList extends Component<HTMLDivElement, HTMLElement> implements DragTarget {
   assignedProjects: Project[]
 
-  constructor(private type: "Active" | "Finished") {
+  constructor(private type: "Ativo" | "Concluido") {
     super('project-list', 'app', false, `${type}-projects`);
     this.assignedProjects = [];
 
@@ -237,9 +237,10 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements Drag
     listEl.classList.add('droppable');
   };
 
+  @autobind
   dragHandler(event: DragEvent) { 
     const prjId = event.dataTransfer!.getData('text/plain');
-    projectState.moveProject(prjId, this.type === 'Active' ? StatusProject.Active : StatusProject.Finished);
+    projectState.moveProject(prjId, this.type === 'Ativo' ? StatusProject.Active : StatusProject.Finished);
   };
 
   @autobind
@@ -255,7 +256,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements Drag
 
     projectState.addListener((projects: Project[]) => {
       const relevantProjects = projects.filter(prj => {
-        if (this.type === "Active")
+        if (this.type === "Ativo")
           return prj.status === StatusProject.Active;
         else
           return prj.status === StatusProject.Finished;
@@ -268,7 +269,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> implements Drag
   renderContent() {
     const listId = `${this.type}-projects-list`;
     this.element.querySelector('ul')!.id = listId;
-    this.element.querySelector('h2')!.textContent = this.type.toUpperCase() + ' PROJECTS';
+    this.element.querySelector('h2')!.textContent = 'Projetos ' +  this.type.toUpperCase();
   }
 
   private renderProjects() {
@@ -356,5 +357,5 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
 }
 
 const prjInput = new ProjectInput();
-const activePrjList = new ProjectList('Active');
-const finishedPrjList = new ProjectList('Finished')
+const activePrjList = new ProjectList('Ativo');
+const finishedPrjList = new ProjectList('Concluido')
