@@ -1,10 +1,7 @@
-// tres barras é uma ferramenta do ts para adicionar cometarios especiais, exclusico do TS n há no JS
-/// <reference path="components/project-input.ts"/>
-/// <reference path="components/project-list.ts"/>
+import { ProjectInput } from "./components/project-input";
+import { ProjectList } from "./components/project-list";
 
-namespace App{
   
   new ProjectInput();
   new ProjectList('Ativo');
   new ProjectList('Concluido')
-}
