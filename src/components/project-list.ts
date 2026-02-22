@@ -1,9 +1,12 @@
-import { Component } from "./base-components";
-import { DragTarget, } from "../models/interface";
-import { Project, StatusProject } from "../models/project";
-import { autobind } from "../decorators/autobind";
-import { projectState} from "../state/project-state";
-import { ProjectItem } from "./project-item";
+import Component from "./base-components.js";
+//? Como interface e type é exlusivo do TS, quando por importa-la, voce pode por a chave type
+//? Assim voce diz ao TS que é um recurso exclusivo e faciliatará na compilacao
+//! ENTRETANTO não recomendado
+import { DragTarget, } from "../models/interface.js";
+import { Project, StatusProject } from "../models/project.js";
+import { autobind } from "../decorators/autobind.js";
+import { projectState } from "../state/project-state.js";
+import { ProjectItem } from "./project-item.js";
 
 // ProjectList Class
 export class ProjectList extends Component<HTMLDivElement, HTMLElement> implements DragTarget {
