@@ -36,5 +36,5 @@ Abra o terminal na pasta do projeto e execute:
 # Instalar o TypeScript como dependência de desenvolvimento
 npm install typescript --save-dev
 
-# Compilar o código TypeScript para JavaScript (Modo Watch)
-tsc -w
+# Compilar o código TypeScript para JavaScript pelo webpack
+npm run build

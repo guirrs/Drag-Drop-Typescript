@@ -1,10 +1,10 @@
 // Foi permitido esse uso por conta do Default, podendo renomea-la tambem
-import Cmp from "./base-components.js";
+import Cmp from "./base-components";
 // voce por por * para pegar tudo da pasta e as para por um psedomino
-import * as Validation from "../util/validation.js";
+import * as Validation from "../util/validation";
 // pode por por as dentro da chave para renomear a função
-import { autobind as Autobind } from "../decorators/autobind.js";
-import { projectState } from "../state/project-state.js";
+import { autobind as Autobind } from "../decorators/autobind";
+import { projectState } from "../state/project-state";
 
 // ProjectInput Class
 export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {

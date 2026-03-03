@@ -1,4 +1,4 @@
-import { Project, StatusProject } from "../models/project.js";
+import { Project, StatusProject } from "../models/project";
 
 //* Gerenciamente de estado dos projetos
 
